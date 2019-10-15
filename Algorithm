@@ -1,0 +1,15 @@
+Construction of Segment Tree from given array
+1.	We start with a segment arr[0 . . . n-1]. and every time we divide the current segment into two halves(if it has not yet become a segment of length 1), and then call the same procedure on both halves, and for each such segment, we store the minimum value in a segment tree node.
+2.	All levels of the constructed segment tree will be completely filled except the last level. Also, the tree will be a Full Binary Tree because we always divide segments in two halves at every level. Since the constructed tree is always full binary tree with n leaves, there will be n-1 internal nodes. So total number of nodes will be 2*n – 1.
+3.	Height of the segment tree will be logn. Since the tree is represented using array and relation between parent and child indexes must be maintained, size of memory allocated for segment tree will be 2*2^[logn].
+
+Query for minimum value of given range
+int RMQ(node, query start index, query end index) 
+{
+if range of node is within  query start index and query end index
+        return value in node
+   else if range of node is completely outside query start index and query end index
+        return INFINITE
+   else
+    return min( RMQ(node's left child, query start index, query end index), RMQ(node's right child, query start index , query end index) )
+}
